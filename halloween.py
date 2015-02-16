@@ -1,6 +1,6 @@
 # I can't be bothered to think of a Hallowe'en costume so
 # can you help me generate one randomly?
-
+from random import choice
 
 nouns = []
 adjectives = []
@@ -15,28 +15,24 @@ with open('descriptors.txt') as f:
     for line in f:
         adjectives.append(line.strip())
 
-
 def generate_costume():
-
     # pick something random from the nouns and adjectives list
-
-    noun = "lazy"
-    adj = "person"
+    noun = choice(nouns)
+    adj = choice(adjectives)
 
     return (noun, adj)
 
-
 while True:
     (noun, adjective) = generate_costume()
+    print "You go dressed as a {} {} to the party.".format(adjective, noun)
 
-    print "You go dressed as a {} {} to the party."
-
-    happy = raw_input("Are you happy with this choice? ")
+    happy = raw_input("Are you happy with this choice? Yes or No?")
 
     # Check if the user typed something like 'yes' or 'y' and
     # quit the program if they are happy.
-    if happy == True:
+
+    #FIXME adjust for bad user inputs (not Yes or No)
+    if happy == "Yes":
         exit()
     else:
         print "OK, I will choose another costume. Hold on..."
-        print
